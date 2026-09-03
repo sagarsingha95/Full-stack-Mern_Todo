@@ -1,0 +1,3540 @@
+
+> test
+> cross-env NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand
+
+(node:9496) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS tests/todoAuthorization.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:49 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:49 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:50 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      PUT
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/6a93bdb3cf8ccfc7f2e61728
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:51 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      PUT
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/6a93bdb4cf8ccfc7f2e6172d
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      DELETE
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/6a93bdb4cf8ccfc7f2e61730
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:52 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:53 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:53 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:53 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:53 am
+
+      at log (app.js:20:33)
+
+    console.log
+      DELETE
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/6a93bdb5cf8ccfc7f2e61735
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:53 am
+
+      at log (app.js:20:33)
+
+PASS tests/todoValidation.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:54 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:55 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      PUT
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/not-a-valid-id
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      DELETE
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/not-a-valid-id
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      PUT
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/507f1f77bcf86cd799439011
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+    console.log
+      DELETE
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos/507f1f77bcf86cd799439011
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:56 am
+
+      at log (app.js:20:33)
+
+PASS tests/refresh.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:57 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.warn
+      Refresh token reuse detected for user 6a93bdbac8e1b968cd5b8014
+
+    [0m [90m 247 |[39m
+     [90m 248 |[39m     [36mif[39m (session[33m.[39mrevoked) {
+    [31m[1m>[22m[39m[90m 249 |[39m       console[33m.[39mwarn([32m`Refresh token reuse detected for user ${userId}`[39m)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 250 |[39m
+     [90m 251 |[39m       [90m// Revoke entire token family[39m
+     [90m 252 |[39m       [36mawait[39m [33mRefreshSession[39m[33m.[39mupdateMany([0m
+
+      at warn (controllers/auth_controller.js:249:15)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:58 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.error
+      JsonWebTokenError {
+        name: 'JsonWebTokenError',
+        message: 'jwt malformed'
+      }
+
+    [0m [90m 1 |[39m [36mconst[39m errorMiddleware [33m=[39m (err[33m,[39m req[33m,[39m res[33m,[39m next) [33m=>[39m {
+    [31m[1m>[22m[39m[90m 2 |[39m   [90m/* eslint-disable */[39mconsole[33m.[39merror([33m...[39moo_tx([32m`3908135160_2_2_2_20_11`[39m[33m,[39merr))[33m;[39m
+     [90m   |[39m                               [31m[1m^[22m[39m
+     [90m 3 |[39m
+     [90m 4 |[39m   [90m// ==========================================[39m
+     [90m 5 |[39m   [90m// REQUEST BODY TOO LARGE[39m[0m
+
+      at error (middlewares/errorMiddleWare.js:2:31)
+      at Layer.handleError (node_modules/router/lib/layer.js:116:17)
+      at trimPrefix (node_modules/router/index.js:340:13)
+      at node_modules/router/index.js:297:9
+      at processParams (node_modules/router/index.js:582:12)
+      at next (node_modules/router/index.js:291:5)
+      at node_modules/router/index.js:688:15
+      at next (node_modules/router/index.js:276:14)
+      at next (node_modules/router/lib/route.js:132:14)
+      at next (controllers/auth_controller.js:376:5)
+      at Layer.handleRequest (node_modules/router/lib/layer.js:152:17)
+      at next (node_modules/router/lib/route.js:157:13)
+      at node_modules/express-rate-limit/dist/index.mjs:1015:7
+      at node_modules/express-rate-limit/dist/index.mjs:835:5
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/logout
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/logout
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+    console.warn
+      Refresh token reuse detected for user 6a93bdbbc8e1b968cd5b801b
+
+    [0m [90m 247 |[39m
+     [90m 248 |[39m     [36mif[39m (session[33m.[39mrevoked) {
+    [31m[1m>[22m[39m[90m 249 |[39m       console[33m.[39mwarn([32m`Refresh token reuse detected for user ${userId}`[39m)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 250 |[39m
+     [90m 251 |[39m       [90m// Revoke entire token family[39m
+     [90m 252 |[39m       [36mawait[39m [33mRefreshSession[39m[33m.[39mupdateMany([0m
+
+      at warn (controllers/auth_controller.js:249:15)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/logout
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:50:59 am
+
+      at log (app.js:20:33)
+
+PASS tests/todoQuery.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:00 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:00 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?page=0
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:00 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:00 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:00 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?page=abc
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?page=1.5
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?limit=0
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?limit=51
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?limit=abc
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:01 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?status=random
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?sort=random
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?search=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos?page=1&limit=10&search=test&status=pending&sort=newest
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:02 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+PASS tests/rateLimit.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:03 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:04 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:04 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:04 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:04 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:05 am
+
+      at log (app.js:20:33)
+
+PASS tests/auth.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:06 am
+
+      at log (app.js:20:33)
+
+PASS tests/todo.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      GET
+
+      at log (app.js:18:33)
+
+    console.log
+      /todos
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+PASS tests/security.test.js
+  ● Console
+
+    console.log
+      Connected to test database
+
+      at Object.log (tests/setup.js:10:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/loginUser
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/register
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:07 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+    console.log
+      POST
+
+      at log (app.js:18:33)
+
+    console.log
+      /auth/refresh
+
+      at log (app.js:19:33)
+
+    console.log
+      Time: 10:51:08 am
+
+      at log (app.js:20:33)
+
+
+Test Suites: 8 passed, 8 total
+Tests:       55 passed, 55 total
+Snapshots:   0 total
+Time:        19.18 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+Terminate batch job (Y/N)? 
+^C
