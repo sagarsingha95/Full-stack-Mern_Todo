@@ -1,14 +1,10 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+
 // ========================================
 // REFRESH STATE
 // ========================================
 
-// Stores the currently running refresh request.
-//
-// If multiple API requests receive 401 at the
-// same time, they will share this Promise instead
-// of sending multiple refresh requests.
 let refreshPromise = null;
 
 
@@ -17,16 +13,12 @@ let refreshPromise = null;
 // ========================================
 
 const refreshAccessToken = async () => {
-
-  // If refresh is already running,
-  // return the existing Promise.
   if (refreshPromise) {
     return refreshPromise;
   }
 
   refreshPromise = (async () => {
     try {
-
       const refreshResponse = await fetch(
         `${API_URL}/auth/refresh`,
         {
@@ -35,12 +27,12 @@ const refreshAccessToken = async () => {
         },
       );
 
-      // Refresh token is invalid/expired
       if (!refreshResponse.ok) {
         throw new Error("Refresh token expired");
       }
 
-      const refreshData = await refreshResponse.json();
+      const refreshData =
+        await refreshResponse.json();
 
       const newToken = refreshData.token;
 
@@ -50,7 +42,6 @@ const refreshAccessToken = async () => {
         );
       }
 
-      // Store new access token
       localStorage.setItem(
         "token",
         newToken,
@@ -59,8 +50,6 @@ const refreshAccessToken = async () => {
       return newToken;
 
     } finally {
-
-      // Allow another refresh request later.
       refreshPromise = null;
     }
   })();
@@ -78,8 +67,12 @@ export const apiRequest = async (
   options = {},
 ) => {
 
-  // Get current access token
-  const token = localStorage.getItem("token");
+  const token =
+    localStorage.getItem("token");
+
+  // Check whether we're sending FormData
+  const isFormData =
+    options.body instanceof FormData;
 
 
   // ========================================
@@ -91,12 +84,15 @@ export const apiRequest = async (
     {
       ...options,
 
-      // Important because refresh token
-      // is stored in HttpOnly cookie.
       credentials: "include",
 
       headers: {
-        "Content-Type": "application/json",
+
+        // Only add application/json
+        // when the request is NOT FormData.
+        ...(!isFormData && {
+          "Content-Type": "application/json",
+        }),
 
         ...(token && {
           Authorization: `Bearer ${token}`,
@@ -112,15 +108,6 @@ export const apiRequest = async (
   // AUTH ROUTES
   // ========================================
 
-  // These routes should NEVER trigger
-  // access-token refresh.
-  //
-  // Example:
-  //
-  // Wrong login credentials
-  // /auth/loginUser → 401
-  //
-  // We should NOT call /auth/refresh.
   const isAuthRoute =
     endpoint === "/auth/loginUser" ||
     endpoint === "/auth/register" ||
@@ -143,8 +130,6 @@ export const apiRequest = async (
       // REFRESH ACCESS TOKEN
       // ========================================
 
-      // If another request is already refreshing,
-      // this waits for the same Promise.
       const newToken =
         await refreshAccessToken();
 
@@ -161,7 +146,12 @@ export const apiRequest = async (
           credentials: "include",
 
           headers: {
-            "Content-Type": "application/json",
+
+            // Same FormData handling
+            // is required on the retry.
+            ...(!isFormData && {
+              "Content-Type": "application/json",
+            }),
 
             Authorization:
               `Bearer ${newToken}`,
@@ -181,21 +171,15 @@ export const apiRequest = async (
 
 
       if (!retryResponse.ok) {
-
         throw new Error(
           retryData.message ||
           "Request failed after token refresh",
         );
-
       }
 
       return retryData;
 
     } catch (error) {
-
-      // ========================================
-      // REFRESH FAILED
-      // ========================================
 
       console.error(
         "Session refresh failed:",
@@ -217,7 +201,8 @@ export const apiRequest = async (
   // NORMAL RESPONSE
   // ========================================
 
-  const data = await response.json();
+  const data =
+    await response.json();
 
 
   // ========================================
@@ -225,7 +210,6 @@ export const apiRequest = async (
   // ========================================
 
   if (!response.ok) {
-
     throw new Error(
       data.message ||
       "Something went wrong",

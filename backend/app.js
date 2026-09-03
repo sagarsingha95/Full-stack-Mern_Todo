@@ -15,11 +15,18 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(helmet());
 const logger = (req, res, next) => {
-  console.log(`${req.method}`);
-  console.log(`${req.url}`);
-  console.log(`Time: ${new Date().toLocaleTimeString()}`);
+  console.log(req.method);
+  console.log(req.url);
+  console.log(
+    `Time: ${new Date().toLocaleTimeString()}`
+  );
+
   next();
 };
+
+if (process.env.NODE_ENV !== "test") {
+  app.use(logger);
+}
 app.use(logger);
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());

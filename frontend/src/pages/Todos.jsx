@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { apiRequest } from "../services/api";
 import { useAuth } from "../context/AuthContext";
@@ -32,19 +33,22 @@ const Todos = () => {
 
   const [sort, setSort] = useState("newest");
 
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const totalTodos = totalTodoCount;
 
   const completedTodos = todos.filter(
-    (todo) => todo.completed,
+    (todo) => todo.completed
   ).length;
 
   const pendingTodos = todos.filter(
-    (todo) => !todo.completed,
+    (todo) => !todo.completed
   ).length;
 
+  // ========================================
   // FETCH TODOS
+  // ========================================
+
   const fetchTodos = async () => {
     try {
       setError("");
@@ -59,14 +63,18 @@ const Todos = () => {
       });
 
       const data = await apiRequest(
-        `/todos?${params.toString()}`,
+        `/todos?${params.toString()}`
       );
 
       setTodos(data.todos);
 
-      setTotalPages(data.pagination.totalPages);
+      setTotalPages(
+        data.pagination.totalPages
+      );
 
-      setTotalTodoCount(data.pagination.totalTodos);
+      setTotalTodoCount(
+        data.pagination.totalTodos
+      );
     } catch (error) {
       setError(error.message);
     } finally {
@@ -74,16 +82,26 @@ const Todos = () => {
     }
   };
 
+  // ========================================
+  // FETCH WHEN QUERY CHANGES
+  // ========================================
+
   useEffect(() => {
     fetchTodos();
   }, [page, search, filter, sort]);
 
-  // Reset page when searching/filtering/sorting
+  // ========================================
+  // RESET PAGE
+  // ========================================
+
   useEffect(() => {
     setPage(1);
   }, [search, filter, sort]);
 
-  // Success message timer
+  // ========================================
+  // SUCCESS TIMER
+  // ========================================
+
   useEffect(() => {
     if (!success) return;
 
@@ -91,10 +109,14 @@ const Todos = () => {
       setSuccess("");
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () =>
+      clearTimeout(timer);
   }, [success]);
 
-  // Error message timer
+  // ========================================
+  // ERROR TIMER
+  // ========================================
+
   useEffect(() => {
     if (!error) return;
 
@@ -102,70 +124,116 @@ const Todos = () => {
       setError("");
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () =>
+      clearTimeout(timer);
   }, [error]);
 
-  // CREATE
+  // ========================================
+  // CREATE TODO
+  // ========================================
+
   const createTodo = async (todoData) => {
     try {
-      const data = await apiRequest("/todos", {
-        method: "POST",
-        body: JSON.stringify(todoData),
-      });
+      const data = await apiRequest(
+        "/todos",
+        {
+          method: "POST",
 
-      setSuccess("Todo created successfully");
+          body: JSON.stringify(
+            todoData
+          ),
+        }
+      );
 
-      // Refresh current page
+      setSuccess(
+        "Todo created successfully"
+      );
+
       await fetchTodos();
 
       return data;
     } catch (error) {
       setError(error.message);
+
       throw error;
     }
   };
 
-  // UPDATE
-  const updateTodo = async (id, todoData) => {
+  // ========================================
+  // UPDATE TODO
+  // ========================================
+
+  const updateTodo = async (
+    id,
+    todoData
+  ) => {
     try {
-      const data = await apiRequest(`/todos/${id}`, {
-        method: "PUT",
-        body: JSON.stringify(todoData),
-      });
+      const data = await apiRequest(
+        `/todos/${id}`,
+        {
+          method: "PUT",
+
+          body: JSON.stringify(
+            todoData
+          ),
+        }
+      );
 
       setTodos((prevTodos) =>
         prevTodos.map((todo) =>
-          todo._id === id ? data.data : todo,
-        ),
+          todo._id === id
+            ? data.data
+            : todo
+        )
       );
 
-      setSuccess("Todo updated successfully.");
+      setSuccess(
+        "Todo updated successfully."
+      );
     } catch (error) {
       setError(error.message);
+
       throw error;
     }
   };
 
-  // DELETE
+  // ========================================
+  // DELETE TODO
+  // ========================================
+
   const deleteTodo = async (id) => {
     try {
       setDeletingId(id);
 
-      await apiRequest(`/todos/${id}`, {
-        method: "DELETE",
-      });
-
-      setTodos((prevTodos) =>
-        prevTodos.filter((todo) => todo._id !== id),
+      await apiRequest(
+        `/todos/${id}`,
+        {
+          method: "DELETE",
+        }
       );
 
-      setTotalTodoCount((prev) => Math.max(prev - 1, 0));
+      setTodos((prevTodos) =>
+        prevTodos.filter(
+          (todo) =>
+            todo._id !== id
+        )
+      );
 
-      setSuccess("Todo deleted successfully.");
+      setTotalTodoCount((prev) =>
+        Math.max(prev - 1, 0)
+      );
 
-      // If current page becomes empty, go to previous page
-      if (todos.length === 1 && page > 1) {
-        setPage((prev) => prev - 1);
+      setSuccess(
+        "Todo deleted successfully."
+      );
+
+      if (
+        todos.length === 1 &&
+        page > 1
+      ) {
+        setPage(
+          (prev) => prev - 1
+        );
       }
     } catch (error) {
       setError(error.message);
@@ -176,80 +244,193 @@ const Todos = () => {
 
   return (
     <div className="min-h-screen bg-paper">
-      {/* NAVBAR */}
+
+      {/* =====================================
+          NAVBAR
+      ===================================== */}
 
       <nav className="border-b border-moss/40 bg-paper">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
+
+          {/* LOGO */}
+
           <span className="font-display text-xl font-semibold tracking-tight text-ink">
             Marked
           </span>
 
-          <button
-            onClick={logout}
-            className="rounded-full border border-ink/25 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-          >
-            Log out
-          </button>
+          <div className="flex items-center gap-3 sm:gap-4">
+
+            {/* USER PROFILE */}
+
+            {user && (
+              <Link
+                to="/profile"
+                className="flex items-center gap-3 rounded-xl px-2 py-1 transition-colors hover:bg-moss/10"
+              >
+
+                {/* AVATAR */}
+
+                {user.profilePicture?.url ? (
+                  <img
+                    src={
+                      user.profilePicture.url
+                    }
+                    alt={user.name}
+                    className="h-10 w-10 rounded-full border border-moss/40 object-cover"
+                  />
+                ) : (
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink font-body font-semibold text-paper">
+                    {user.name
+                      ?.charAt(0)
+                      .toUpperCase()}
+                  </div>
+                )}
+
+                {/* NAME */}
+
+                <div className="hidden text-left sm:block">
+
+                  <p className="font-body text-sm font-medium text-ink">
+                    {user.name}
+                  </p>
+
+                  <p className="font-body text-xs text-ink/50">
+                    View profile
+                  </p>
+
+                </div>
+
+              </Link>
+            )}
+
+            {/* LOGOUT */}
+
+            <button
+              type="button"
+              onClick={logout}
+              className="rounded-full border border-ink/25 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              Log out
+            </button>
+
+          </div>
+
         </div>
       </nav>
+
+      {/* =====================================
+          MAIN CONTENT
+      ===================================== */}
 
       <main className="mx-auto max-w-6xl px-6 py-8 sm:px-10 sm:py-10">
 
         {/* HEADER */}
 
         <div className="mb-8">
+
           <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
             My list
           </h2>
 
           <p className="mt-1.5 font-body text-sm text-ink/60 sm:text-base">
-            Everything you need to do, in one place.
+            Everything you need to do,
+            in one place.
           </p>
+
         </div>
 
-        {/* SEARCH / FILTER / SORT */}
+        {/* =====================================
+            SEARCH / FILTER / SORT
+        ===================================== */}
 
         <div className="mb-6 rounded-2xl border border-moss/50 bg-white p-5">
+
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+
+            {/* SEARCH */}
 
             <input
               type="text"
               placeholder="Search todos..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) =>
+                setSearch(
+                  e.target.value
+                )
+              }
               className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-ink/35 outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
             />
 
+            {/* FILTER */}
+
             <select
               value={filter}
-              onChange={(e) => setFilter(e.target.value)}
+              onChange={(e) =>
+                setFilter(
+                  e.target.value
+                )
+              }
               className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
             >
-              <option value="all">All todos</option>
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
+              <option value="all">
+                All todos
+              </option>
+
+              <option value="pending">
+                Pending
+              </option>
+
+              <option value="completed">
+                Completed
+              </option>
             </select>
+
+            {/* SORT */}
 
             <select
               value={sort}
-              onChange={(e) => setSort(e.target.value)}
+              onChange={(e) =>
+                setSort(
+                  e.target.value
+                )
+              }
               className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
             >
-              <option value="newest">Newest first</option>
-              <option value="oldest">Oldest first</option>
-              <option value="az">A → Z</option>
-              <option value="za">Z → A</option>
-              <option value="priority">Highest priority</option>
+              <option value="newest">
+                Newest first
+              </option>
+
+              <option value="oldest">
+                Oldest first
+              </option>
+
+              <option value="az">
+                A → Z
+              </option>
+
+              <option value="za">
+                Z → A
+              </option>
+
+              <option value="priority">
+                Highest priority
+              </option>
             </select>
 
           </div>
+
         </div>
 
-        {/* STATISTICS */}
+        {/* =====================================
+            STATISTICS
+        ===================================== */}
 
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
 
+          {/* TOTAL */}
+
           <div className="rounded-2xl border border-moss/50 bg-white p-5">
+
             <p className="font-body text-sm text-ink/55">
               Total
             </p>
@@ -257,9 +438,13 @@ const Todos = () => {
             <p className="mt-2 font-display text-3xl font-semibold text-ink">
               {totalTodos}
             </p>
+
           </div>
 
+          {/* COMPLETED */}
+
           <div className="rounded-2xl border border-moss/50 bg-white p-5">
+
             <p className="font-body text-sm text-ink/55">
               Completed
             </p>
@@ -267,9 +452,13 @@ const Todos = () => {
             <p className="mt-2 font-display text-3xl font-semibold text-amber-dark">
               {completedTodos}
             </p>
+
           </div>
 
+          {/* PENDING */}
+
           <div className="rounded-2xl border border-moss/50 bg-white p-5">
+
             <p className="font-body text-sm text-ink/55">
               Pending
             </p>
@@ -277,11 +466,14 @@ const Todos = () => {
             <p className="mt-2 font-display text-3xl font-semibold text-ink/70">
               {pendingTodos}
             </p>
+
           </div>
 
         </div>
 
-        {/* ALERTS */}
+        {/* =====================================
+            ALERTS
+        ===================================== */}
 
         <Alert
           message={success}
@@ -293,7 +485,9 @@ const Todos = () => {
           type="error"
         />
 
-        {/* CREATE TODO */}
+        {/* =====================================
+            CREATE TODO
+        ===================================== */}
 
         <div className="mb-8 rounded-2xl border border-moss/50 bg-white p-5 sm:p-6">
 
@@ -302,12 +496,16 @@ const Todos = () => {
           </h3>
 
           <TodoForm
-            onTodoCreated={createTodo}
+            onTodoCreated={
+              createTodo
+            }
           />
 
         </div>
 
-        {/* TODO LIST */}
+        {/* =====================================
+            TODO LIST
+        ===================================== */}
 
         <TodoList
           todos={todos}
@@ -317,37 +515,60 @@ const Todos = () => {
           loading={loading}
         />
 
-        {/* PAGINATION */}
+        {/* =====================================
+            PAGINATION
+        ===================================== */}
 
-        {!loading && totalPages > 0 && (
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        {!loading &&
+          totalPages > 0 && (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
 
-            <button
-              onClick={() =>
-                setPage((prev) => prev - 1)
-              }
-              disabled={page === 1}
-              className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
-            >
-              Previous
-            </button>
+              {/* PREVIOUS */}
 
-            <span className="font-body text-sm text-ink/70">
-              Page {page} of {totalPages}
-            </span>
+              <button
+                type="button"
+                onClick={() =>
+                  setPage(
+                    (prev) =>
+                      prev - 1
+                  )
+                }
+                disabled={
+                  page === 1
+                }
+                className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
+              >
+                Previous
+              </button>
 
-            <button
-              onClick={() =>
-                setPage((prev) => prev + 1)
-              }
-              disabled={page === totalPages}
-              className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
-            >
-              Next
-            </button>
+              {/* PAGE INFO */}
 
-          </div>
-        )}
+              <span className="font-body text-sm text-ink/70">
+                Page {page} of{" "}
+                {totalPages}
+              </span>
+
+              {/* NEXT */}
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPage(
+                    (prev) =>
+                      prev + 1
+                  )
+                }
+                disabled={
+                  page ===
+                  totalPages
+                }
+                className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
+              >
+                Next
+              </button>
+
+            </div>
+          )}
 
       </main>
     </div>
