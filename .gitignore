@@ -27,5 +27,7 @@ Thumbs.db
 # VS Code
 .vscode/
 
-# projectstructure
-project-structure
+
+test-output.txt
+backend-structure.txt
+project-structure.txt
