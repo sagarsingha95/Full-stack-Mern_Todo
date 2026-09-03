@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import AppNavbar from "../components/AppNavbar";
 
 import { apiRequest } from "../services/api";
 import { useAuth } from "../context/AuthContext";
@@ -91,7 +92,6 @@ const Profile = () => {
         }
       );
 
-      // Update global AuthContext user
       setUser(data.user);
 
       setMessage(
@@ -113,7 +113,6 @@ const Profile = () => {
 
     if (!file) return;
 
-    // Optional frontend validation
     const allowedTypes = [
       "image/jpeg",
       "image/png",
@@ -185,7 +184,6 @@ const Profile = () => {
         }
       );
 
-      // Update global user state
       setUser((previousUser) => ({
         ...previousUser,
 
@@ -193,7 +191,6 @@ const Profile = () => {
           data.profilePicture,
       }));
 
-      // Remove temporary preview
       if (preview) {
         URL.revokeObjectURL(preview);
       }
@@ -217,10 +214,14 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paper">
-        <p className="font-body text-ink/60">
-          Loading profile...
-        </p>
+      <div className="min-h-screen bg-paper">
+        <AppNavbar />
+
+        <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
+          <p className="font-body text-ink/60">
+            Loading profile...
+          </p>
+        </div>
       </div>
     );
   }
@@ -231,24 +232,30 @@ const Profile = () => {
 
   if (!user) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paper">
-        <p className="font-body text-ink/60">
-          Unable to load profile.
-        </p>
+      <div className="min-h-screen bg-paper">
+        <AppNavbar />
+
+        <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
+          <p className="font-body text-ink/60">
+            Unable to load profile.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-paper px-4 py-10">
-      <div className="mx-auto max-w-xl rounded-2xl border border-moss/50 bg-white p-6 shadow-sm sm:p-8">
+    <div className="min-h-screen bg-paper">
+      <AppNavbar />
 
-        {/* =====================================
-            HEADER
-        ===================================== */}
+      <main className="px-4 py-10">
+        <div className="mx-auto max-w-xl rounded-2xl border border-moss/50 bg-white p-6 shadow-sm sm:p-8">
 
-        <div className="mb-8 flex items-center justify-between">
-          <div>
+          {/* =====================================
+              HEADER
+          ===================================== */}
+
+          <div className="mb-8">
             <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
               My Profile
             </h1>
@@ -258,171 +265,161 @@ const Profile = () => {
             </p>
           </div>
 
-          <Link
-            to="/todos"
-            className="font-body text-sm text-ink/60 transition-colors hover:text-ink"
-          >
-            ← Back to todos
-          </Link>
-        </div>
+          {/* =====================================
+              AVATAR
+          ===================================== */}
 
-        {/* =====================================
-            AVATAR
-        ===================================== */}
+          <div className="mb-8 flex flex-col items-center">
 
-        <div className="mb-8 flex flex-col items-center">
-
-          {preview ||
-          user.profilePicture?.url ? (
-            <img
-              src={
-                preview ||
-                user.profilePicture?.url
-              }
-              alt={user.name}
-              className="h-32 w-32 rounded-full border border-moss/40 object-cover"
-            />
-          ) : (
-            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-ink font-display text-4xl font-semibold text-paper">
-              {user.name
-                ?.charAt(0)
-                .toUpperCase()}
-            </div>
-          )}
-
-          <label className="mt-5 cursor-pointer rounded-full border border-ink/25 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper">
-
-            Choose Picture
-
-            <input
-              type="file"
-              accept="image/jpeg,image/png,image/webp"
-              onChange={
-                handleFileChange
-              }
-              className="hidden"
-            />
-          </label>
-
-          {selectedFile && (
-            <div className="mt-4 text-center">
-              <p className="mb-3 font-body text-xs text-ink/50">
-                {selectedFile.name}
-              </p>
-
-              <button
-                type="button"
-                onClick={
-                  handleAvatarUpload
+            {preview ||
+            user.profilePicture?.url ? (
+              <img
+                src={
+                  preview ||
+                  user.profilePicture?.url
                 }
-                disabled={uploading}
-                className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
+                alt={user.name}
+                className="h-32 w-32 rounded-full border border-moss/40 object-cover"
+              />
+            ) : (
+              <div className="flex h-32 w-32 items-center justify-center rounded-full bg-ink font-display text-4xl font-semibold text-paper">
+                {user.name
+                  ?.charAt(0)
+                  .toUpperCase()}
+              </div>
+            )}
+
+            <label className="mt-5 cursor-pointer rounded-full border border-ink/25 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper">
+              Choose Picture
+
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </label>
+
+            {selectedFile && (
+              <div className="mt-4 text-center">
+                <p className="mb-3 font-body text-xs text-ink/50">
+                  {selectedFile.name}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={
+                    handleAvatarUpload
+                  }
+                  disabled={uploading}
+                  className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {uploading
+                    ? "Uploading..."
+                    : "Upload Picture"}
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* =====================================
+              PROFILE FORM
+          ===================================== */}
+
+          <form
+            onSubmit={
+              handleUpdateProfile
+            }
+          >
+            {/* NAME */}
+
+            <div className="mb-5">
+              <label
+                htmlFor="name"
+                className="mb-2 block font-body text-sm font-medium text-ink"
               >
-                {uploading
-                  ? "Uploading..."
-                  : "Upload Picture"}
-              </button>
+                Name
+              </label>
+
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) =>
+                  setName(
+                    e.target.value
+                  )
+                }
+                required
+                className="w-full rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+              />
+            </div>
+
+            {/* EMAIL */}
+
+            <div className="mb-6">
+              <label
+                htmlFor="email"
+                className="mb-2 block font-body text-sm font-medium text-ink"
+              >
+                Email
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                value={user.email || ""}
+                disabled
+                className="w-full cursor-not-allowed rounded-xl border border-moss/40 bg-paper px-4 py-3 font-body text-sm text-ink/50"
+              />
+
+              <p className="mt-1.5 font-body text-xs text-ink/40">
+                Email cannot currently be changed.
+              </p>
+            </div>
+
+            {/* SAVE */}
+
+            <button
+              type="submit"
+              disabled={
+                saving ||
+                !name.trim()
+              }
+              className="rounded-full bg-ink px-6 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {saving
+                ? "Saving..."
+                : "Save Changes"}
+            </button>
+          </form>
+
+          {/* =====================================
+              SUCCESS
+          ===================================== */}
+
+          {message && (
+            <div className="mt-5 rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+              <p className="font-body text-sm text-green-700">
+                {message}
+              </p>
             </div>
           )}
+
+          {/* =====================================
+              ERROR
+          ===================================== */}
+
+          {error && (
+            <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3">
+              <p className="font-body text-sm text-red-700">
+                {error}
+              </p>
+            </div>
+          )}
+
         </div>
-
-        {/* =====================================
-            PROFILE FORM
-        ===================================== */}
-
-        <form
-          onSubmit={
-            handleUpdateProfile
-          }
-        >
-          {/* NAME */}
-
-          <div className="mb-5">
-            <label
-              htmlFor="name"
-              className="mb-2 block font-body text-sm font-medium text-ink"
-            >
-              Name
-            </label>
-
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) =>
-                setName(
-                  e.target.value
-                )
-              }
-              required
-              className="w-full rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
-            />
-          </div>
-
-          {/* EMAIL */}
-
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className="mb-2 block font-body text-sm font-medium text-ink"
-            >
-              Email
-            </label>
-
-            <input
-              id="email"
-              type="email"
-              value={user.email || ""}
-              disabled
-              className="w-full cursor-not-allowed rounded-xl border border-moss/40 bg-paper px-4 py-3 font-body text-sm text-ink/50"
-            />
-
-            <p className="mt-1.5 font-body text-xs text-ink/40">
-              Email cannot currently be changed.
-            </p>
-          </div>
-
-          {/* SAVE */}
-
-          <button
-            type="submit"
-            disabled={
-              saving ||
-              !name.trim()
-            }
-            className="rounded-full bg-ink px-6 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {saving
-              ? "Saving..."
-              : "Save Changes"}
-          </button>
-        </form>
-
-        {/* =====================================
-            SUCCESS
-        ===================================== */}
-
-        {message && (
-          <div className="mt-5 rounded-xl border border-green-200 bg-green-50 px-4 py-3">
-            <p className="font-body text-sm text-green-700">
-              {message}
-            </p>
-          </div>
-        )}
-
-        {/* =====================================
-            ERROR
-        ===================================== */}
-
-        {error && (
-          <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3">
-            <p className="font-body text-sm text-red-700">
-              {error}
-            </p>
-          </div>
-        )}
-
-      </div>
+      </main>
     </div>
   );
 };
