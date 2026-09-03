@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   getProfile,
+  updateProfile,
   uploadProfilePicture,
 } from "../controllers/user_controller.js";
 
@@ -22,6 +23,12 @@ router.post(
   authMiddleWare,
   upload.single("avatar"),
   uploadProfilePicture
+);
+
+router.put(
+  "/profile",
+  authMiddleWare,
+  updateProfile
 );
 
 export default router;
