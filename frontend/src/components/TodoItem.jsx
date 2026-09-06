@@ -12,13 +12,28 @@ const CheckIcon = () => (
   </svg>
 );
 
+// Priority maps onto the existing success/warning/danger semantic
+// tokens rather than brand-specific colors, so it stays meaningful
+// across every theme.
 const priorityStyles = {
-  high: { dot: "bg-coral", label: "text-coral" },
-  medium: { dot: "bg-amber", label: "text-amber-dark" },
-  low: { dot: "bg-moss-dark", label: "text-moss-dark" },
+  high: { dot: "bg-[var(--color-danger)]", label: "text-[var(--color-danger)]" },
+  medium: { dot: "bg-[var(--color-warning)]", label: "text-[var(--color-warning)]" },
+  low: { dot: "bg-[var(--color-muted)]", label: "text-[var(--color-muted)]" },
 };
 
-const TodoItem = ({ todo, onUpdate, onDelete, deletingId }) => {
+// Collapses the 10 layout ids down to the handful of render shapes
+// TodoItem actually needs. Several layouts look identical at the
+// item level and differ only in the container (grid vs list vs
+// columns) — that difference lives in TodoList, not here.
+const renderShapeFor = (variant) => {
+  if (variant === "compact" || variant === "timeline") return "compact";
+  if (variant === "minimal") return "minimal";
+  if (variant === "dense") return "dense";
+  if (variant === "focus") return "focus";
+  return "full"; // comfortable, card, kanban-card
+};
+
+const TodoItem = ({ todo, onUpdate, onDelete, deletingId, variant = "comfortable" }) => {
   const [editing, setEditing] = useState(false);
 
   const [title, setTitle] = useState(todo.title);
@@ -88,63 +103,100 @@ const TodoItem = ({ todo, onUpdate, onDelete, deletingId }) => {
   };
 
   const priorityStyle = priorityStyles[todo.priority || "medium"];
+  const shape = renderShapeFor(variant);
 
-  return (
-    <div className="rounded-2xl border border-moss/50 bg-white p-5">
-      {editing ? (
+  const checkboxButton = (
+    <button
+      type="button"
+      onClick={handleToggleCompleted}
+      aria-label={completed ? "Mark as pending" : "Mark as done"}
+      className={`flex h-5 w-5 flex-none items-center justify-center rounded-full border-2 transition-colors ${
+        completed
+          ? "border-[var(--color-success)] bg-[var(--color-success)] text-[var(--color-bg)]"
+          : "border-[var(--color-border)] text-transparent hover:border-[var(--color-primary)]"
+      }`}
+    >
+      <CheckIcon />
+    </button>
+  );
+
+  const actionButtons = (
+    <div className="flex items-center gap-2">
+      <button
+        onClick={() => setEditing(true)}
+        className="rounded-full border border-[var(--color-border)] px-3.5 py-1.5 font-body text-xs font-medium text-[var(--color-text)] transition-colors hover:border-[var(--color-primary)]"
+      >
+        Edit
+      </button>
+
+      <button
+        disabled={deletingId === todo._id}
+        onClick={() => {
+          const confirmed = window.confirm(
+            "Are you sure you want to delete this Todo?",
+          );
+
+          if (confirmed) {
+            onDelete(todo._id);
+          }
+        }}
+        className="rounded-full px-3.5 py-1.5 font-body text-xs font-medium text-[var(--color-danger)] transition-colors hover:bg-[var(--color-danger)]/10 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {deletingId === todo._id ? "Deleting..." : "Delete"}
+      </button>
+    </div>
+  );
+
+  if (editing) {
+    return (
+      <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
         <div className="space-y-3">
-          {/* Title */}
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-xl border border-moss/60 px-3 py-2.5 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-2.5 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
           />
 
-          {/* Description */}
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full rounded-xl border border-moss/60 px-3 py-2.5 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-2.5 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
           />
 
-          {/* Priority */}
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
-            className="w-full rounded-xl border border-moss/60 px-3 py-2.5 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-2.5 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
           >
             <option value="low">Low priority</option>
             <option value="medium">Medium priority</option>
             <option value="high">High priority</option>
           </select>
 
-          {/* Due date */}
           <input
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="w-full rounded-xl border border-moss/60 px-3 py-2.5 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-2.5 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
           />
 
-          {/* Completed */}
-          <label className="flex items-center gap-2 font-body text-sm text-ink/70">
+          <label className="flex items-center gap-2 font-body text-sm text-[var(--color-muted)]">
             <input
               type="checkbox"
               checked={completed}
               onChange={(e) => setCompleted(e.target.checked)}
-              className="h-4 w-4 accent-amber"
+              className="h-4 w-4 accent-[var(--color-primary)]"
             />
             Completed
           </label>
 
-          {/* Buttons */}
           <div className="flex gap-2 pt-1">
             <button
               onClick={handleUpdate}
               disabled={updating}
-              className="rounded-full bg-ink px-4 py-2 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-full bg-[var(--color-primary)] px-4 py-2 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {updating ? "Saving..." : "Save"}
             </button>
@@ -152,101 +204,180 @@ const TodoItem = ({ todo, onUpdate, onDelete, deletingId }) => {
             <button
               onClick={handleCancel}
               disabled={updating}
-              className="rounded-full border border-ink/25 px-4 py-2 font-body text-sm font-medium text-ink transition-colors hover:border-ink"
+              className="rounded-full border border-[var(--color-border)] px-4 py-2 font-body text-sm font-medium text-[var(--color-text)] transition-colors hover:border-[var(--color-primary)]"
             >
               Cancel
             </button>
           </div>
         </div>
-      ) : (
-        <div>
-          {/* Checkbox + title */}
-          <div className="flex items-start gap-3">
-            <button
-              type="button"
-              onClick={handleToggleCompleted}
-              aria-label={completed ? "Mark as pending" : "Mark as done"}
-              className={`mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full border-2 transition-colors ${
-                completed
-                  ? "border-amber bg-amber text-white"
-                  : "border-moss text-transparent hover:border-ink/40"
-              }`}
-            >
-              <CheckIcon />
-            </button>
+      </div>
+    );
+  }
 
-            <h3
-              className={`font-display text-lg font-semibold ${
-                completed ? "text-ink/35 line-through" : "text-ink"
-              }`}
-            >
-              {todo.title}
-            </h3>
-          </div>
+  // ==========================================
+  // MINIMAL — checkbox + title only, small actions
+  // ==========================================
+  if (shape === "minimal") {
+    return (
+      <div className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-2.5">
+        {checkboxButton}
+        <span
+          className={`flex-1 font-body text-sm ${
+            completed ? "text-[var(--color-muted)] line-through" : "text-[var(--color-text)]"
+          }`}
+        >
+          {todo.title}
+        </span>
+        <button
+          onClick={() => setEditing(true)}
+          className="font-body text-xs text-[var(--color-muted)] hover:text-[var(--color-primary)]"
+        >
+          Edit
+        </button>
+        <button
+          disabled={deletingId === todo._id}
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete this Todo?")) {
+              onDelete(todo._id);
+            }
+          }}
+          className="font-body text-xs text-[var(--color-danger)] disabled:opacity-50"
+        >
+          {deletingId === todo._id ? "..." : "Delete"}
+        </button>
+      </div>
+    );
+  }
 
-          {/* Description */}
-          {todo.description && (
-            <p className="mt-2 pl-8 font-body text-sm text-ink/60">
-              {todo.description}
-            </p>
-          )}
+  // ==========================================
+  // DENSE — single row, table-like
+  // ==========================================
+  if (shape === "dense") {
+    return (
+      <div className="flex items-center gap-4 bg-[var(--color-card)] px-4 py-3">
+        {checkboxButton}
 
-          {/* Meta row */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 pl-8">
-            <span
-              className={`flex items-center gap-1.5 font-body text-xs font-medium capitalize ${priorityStyle.label}`}
-            >
-              <span className={`h-1.5 w-1.5 rounded-full ${priorityStyle.dot}`} />
-              {todo.priority || "medium"} priority
-            </span>
+        <span
+          className={`flex-1 font-body text-sm ${
+            completed ? "text-[var(--color-muted)] line-through" : "text-[var(--color-text)]"
+          }`}
+        >
+          {todo.title}
+        </span>
 
-            {todo.dueDate && (
-              <span
-                className={`font-body text-xs ${
-                  isOverdue ? "font-medium text-coral" : "text-ink/50"
-                }`}
-              >
-                {isOverdue ? "Overdue: " : "Due "}
-                {new Date(todo.dueDate).toLocaleDateString()}
-              </span>
-            )}
+        <span className={`flex items-center gap-1.5 font-body text-xs capitalize ${priorityStyle.label}`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${priorityStyle.dot}`} />
+          {todo.priority || "medium"}
+        </span>
 
-            <span className="font-body text-xs text-ink/50">
-              {completed ? (
-                <span className="font-medium text-amber-dark">Completed</span>
-              ) : (
-                "Pending"
-              )}
-            </span>
-          </div>
+        {todo.dueDate && (
+          <span
+            className={`font-body text-xs ${
+              isOverdue ? "font-medium text-[var(--color-danger)]" : "text-[var(--color-muted)]"
+            }`}
+          >
+            {new Date(todo.dueDate).toLocaleDateString()}
+          </span>
+        )}
 
-          {/* Actions */}
-          <div className="mt-4 flex items-center gap-2 pl-8">
-            <button
-              onClick={() => setEditing(true)}
-              className="rounded-full border border-ink/20 px-3.5 py-1.5 font-body text-xs font-medium text-ink transition-colors hover:border-ink"
-            >
-              Edit
-            </button>
+        {actionButtons}
+      </div>
+    );
+  }
 
-            <button
-              disabled={deletingId === todo._id}
-              onClick={() => {
-                const confirmed = window.confirm(
-                  "Are you sure you want to delete this Todo?",
-                );
-
-                if (confirmed) {
-                  onDelete(todo._id);
-                }
-              }}
-              className="rounded-full px-3.5 py-1.5 font-body text-xs font-medium text-coral transition-colors hover:bg-coral/10 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {deletingId === todo._id ? "Deleting..." : "Delete"}
-            </button>
-          </div>
+  // ==========================================
+  // COMPACT — condensed card, one-line meta
+  // ==========================================
+  if (shape === "compact") {
+    return (
+      <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+        <div className="flex items-center gap-3">
+          {checkboxButton}
+          <h3
+            className={`flex-1 font-display text-base font-semibold ${
+              completed ? "text-[var(--color-muted)] line-through" : "text-[var(--color-text)]"
+            }`}
+          >
+            {todo.title}
+          </h3>
         </div>
+
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 pl-8">
+          <span className={`flex items-center gap-1 font-body text-xs capitalize ${priorityStyle.label}`}>
+            <span className={`h-1.5 w-1.5 rounded-full ${priorityStyle.dot}`} />
+            {todo.priority || "medium"}
+          </span>
+
+          {todo.dueDate && (
+            <span
+              className={`font-body text-xs ${
+                isOverdue ? "font-medium text-[var(--color-danger)]" : "text-[var(--color-muted)]"
+              }`}
+            >
+              {new Date(todo.dueDate).toLocaleDateString()}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-3 pl-8">{actionButtons}</div>
+      </div>
+    );
+  }
+
+  // ==========================================
+  // FULL / FOCUS — comfortable, card, kanban-card, focus
+  // ==========================================
+  return (
+    <div
+      className={`rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] ${
+        shape === "focus" ? "w-full max-w-md p-8" : "p-5"
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        {checkboxButton}
+
+        <h3
+          className={`font-display font-semibold ${shape === "focus" ? "text-2xl" : "text-lg"} ${
+            completed ? "text-[var(--color-muted)] line-through" : "text-[var(--color-text)]"
+          }`}
+        >
+          {todo.title}
+        </h3>
+      </div>
+
+      {todo.description && (
+        <p className="mt-2 pl-8 font-body text-sm text-[var(--color-muted)]">
+          {todo.description}
+        </p>
       )}
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 pl-8">
+        <span className={`flex items-center gap-1.5 font-body text-xs font-medium capitalize ${priorityStyle.label}`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${priorityStyle.dot}`} />
+          {todo.priority || "medium"} priority
+        </span>
+
+        {todo.dueDate && (
+          <span
+            className={`font-body text-xs ${
+              isOverdue ? "font-medium text-[var(--color-danger)]" : "text-[var(--color-muted)]"
+            }`}
+          >
+            {isOverdue ? "Overdue: " : "Due "}
+            {new Date(todo.dueDate).toLocaleDateString()}
+          </span>
+        )}
+
+        <span className="font-body text-xs text-[var(--color-muted)]">
+          {completed ? (
+            <span className="font-medium text-[var(--color-success)]">Completed</span>
+          ) : (
+            "Pending"
+          )}
+        </span>
+      </div>
+
+      <div className="mt-4 pl-8">{actionButtons}</div>
     </div>
   );
 };

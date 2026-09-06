@@ -11,6 +11,39 @@
   --font-body: "Sora", sans-serif;
 }
 
+/* ==========================================
+   APPEARANCE SYSTEM — runtime theme tokens
+   ==========================================
+   These are plain CSS custom properties, not Tailwind @theme tokens,
+   because their values change at runtime (see AppearanceContext.jsx)
+   rather than being fixed at build time. The block below is only a
+   fallback for the brief moment before AppearanceProvider's effect
+   runs on mount — after that, JS overrides these on <html> directly
+   based on the active theme.
+
+   Consumed via Tailwind's arbitrary-value syntax, e.g.
+   bg-[var(--color-bg)], text-[var(--color-text)].
+
+   Public pages (Landing/Login/Register) never reference these, so
+   they're unaffected by theme switching — only the authenticated
+   app (AppNavbar, Todos, Profile, etc.) uses them.
+   ========================================== */
+
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-card: #ffffff;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #f59e0b;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;

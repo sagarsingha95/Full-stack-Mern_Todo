@@ -43,7 +43,7 @@ const TodoForm = ({ onTodoCreated }) => {
         placeholder="Todo title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
       />
 
       <input
@@ -51,32 +51,32 @@ const TodoForm = ({ onTodoCreated }) => {
         placeholder="Todo description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
       />
 
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none"
+        className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
       >
-        <option value="low">Low Priority</option>
-        <option value="medium">Medium Priority</option>
-        <option value="high">High Priority</option>
+        <option value="low">Low priority</option>
+        <option value="medium">Medium priority</option>
+        <option value="high">High priority</option>
       </select>
 
       <input
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none"
+        className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
       />
 
       <button
         type="submit"
         disabled={loading}
-        className="px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 transition"
+        className="rounded-full bg-[var(--color-primary)] px-5 py-3 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {loading ? "Adding..." : "Add Todo"}
+        {loading ? "Adding..." : "Add todo"}
       </button>
 
     </form>

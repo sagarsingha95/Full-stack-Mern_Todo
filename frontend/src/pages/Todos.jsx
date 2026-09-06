@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../services/api";
+import { useAppearance } from "../context/AppearenceContext";
 
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
@@ -31,6 +32,7 @@ const Todos = () => {
 
   const [sort, setSort] = useState("newest");
 
+  const { todoLayout } = useAppearance();
 
   const totalTodos = totalTodoCount;
 
@@ -240,7 +242,7 @@ const Todos = () => {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[var(--color-bg)]">
 
       {/* =====================================
           NAVBAR
@@ -258,11 +260,11 @@ const Todos = () => {
 
         <div className="mb-8">
 
-          <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-[var(--color-text)] sm:text-4xl">
             My list
           </h2>
 
-          <p className="mt-1.5 font-body text-sm text-ink/60 sm:text-base">
+          <p className="mt-1.5 font-body text-sm text-[var(--color-muted)] sm:text-base">
             Everything you need to do,
             in one place.
           </p>
@@ -273,7 +275,7 @@ const Todos = () => {
             SEARCH / FILTER / SORT
         ===================================== */}
 
-        <div className="mb-6 rounded-2xl border border-moss/50 bg-white p-5">
+        <div className="mb-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
 
@@ -288,7 +290,7 @@ const Todos = () => {
                   e.target.value
                 )
               }
-              className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-ink/35 outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
             />
 
             {/* FILTER */}
@@ -300,7 +302,7 @@ const Todos = () => {
                   e.target.value
                 )
               }
-              className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
             >
               <option value="all">
                 All todos
@@ -324,7 +326,7 @@ const Todos = () => {
                   e.target.value
                 )
               }
-              className="rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
+              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/25"
             >
               <option value="newest">
                 Newest first
@@ -359,13 +361,13 @@ const Todos = () => {
 
           {/* TOTAL */}
 
-          <div className="rounded-2xl border border-moss/50 bg-white p-5">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
 
-            <p className="font-body text-sm text-ink/55">
+            <p className="font-body text-sm text-[var(--color-muted)]">
               Total
             </p>
 
-            <p className="mt-2 font-display text-3xl font-semibold text-ink">
+            <p className="mt-2 font-display text-3xl font-semibold text-[var(--color-text)]">
               {totalTodos}
             </p>
 
@@ -373,13 +375,13 @@ const Todos = () => {
 
           {/* COMPLETED */}
 
-          <div className="rounded-2xl border border-moss/50 bg-white p-5">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
 
-            <p className="font-body text-sm text-ink/55">
+            <p className="font-body text-sm text-[var(--color-muted)]">
               Completed
             </p>
 
-            <p className="mt-2 font-display text-3xl font-semibold text-amber-dark">
+            <p className="mt-2 font-display text-3xl font-semibold text-[var(--color-success)]">
               {completedTodos}
             </p>
 
@@ -387,13 +389,13 @@ const Todos = () => {
 
           {/* PENDING */}
 
-          <div className="rounded-2xl border border-moss/50 bg-white p-5">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
 
-            <p className="font-body text-sm text-ink/55">
+            <p className="font-body text-sm text-[var(--color-muted)]">
               Pending
             </p>
 
-            <p className="mt-2 font-display text-3xl font-semibold text-ink/70">
+            <p className="mt-2 font-display text-3xl font-semibold text-[var(--color-text)]">
               {pendingTodos}
             </p>
 
@@ -419,9 +421,9 @@ const Todos = () => {
             CREATE TODO
         ===================================== */}
 
-        <div className="mb-8 rounded-2xl border border-moss/50 bg-white p-5 sm:p-6">
+        <div className="mb-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 sm:p-6">
 
-          <h3 className="mb-4 font-display text-lg font-semibold text-ink sm:text-xl">
+          <h3 className="mb-4 font-display text-lg font-semibold text-[var(--color-text)] sm:text-xl">
             Add a todo
           </h3>
 
@@ -443,6 +445,7 @@ const Todos = () => {
           onDelete={deleteTodo}
           deletingId={deletingId}
           loading={loading}
+          layoutId={todoLayout}
         />
 
         {/* =====================================
@@ -466,14 +469,14 @@ const Todos = () => {
                 disabled={
                   page === 1
                 }
-                className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
+                className="rounded-full bg-[var(--color-primary)] px-5 py-2.5 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Previous
               </button>
 
               {/* PAGE INFO */}
 
-              <span className="font-body text-sm text-ink/70">
+              <span className="font-body text-sm text-[var(--color-muted)]">
                 Page {page} of{" "}
                 {totalPages}
               </span>
@@ -492,7 +495,7 @@ const Todos = () => {
                   page ===
                   totalPages
                 }
-                className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink"
+                className="rounded-full bg-[var(--color-primary)] px-5 py-2.5 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Next
               </button>

@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import AppNavbar from "../components/AppNavbar";
+import ThemePicker from "../components/ThemePicker";
+import LayoutPicker from "../components/LayoutPicker";
 
 import { apiRequest } from "../services/api";
 import { useAuth } from "../context/AuthContext";
+
+const EditIcon = () => (
+  <svg viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5" aria-hidden="true">
+    <path
+      d="M4 12.5V14h1.5l7.3-7.3-1.5-1.5L4 12.5ZM13.7 4.3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-1.1 1.1 3 3 1.1-1.1Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 const Profile = () => {
   const {
@@ -11,6 +23,8 @@ const Profile = () => {
     setUser,
     fetchProfile,
   } = useAuth();
+
+  const [activeTab, setActiveTab] = useState("profile");
 
   const [name, setName] = useState("");
 
@@ -212,13 +226,14 @@ const Profile = () => {
   // LOADING
   // =========================================
 
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-paper">
+      <div className="min-h-screen bg-[var(--color-bg)]">
         <AppNavbar />
 
         <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
-          <p className="font-body text-ink/60">
+          <p className="font-body text-[var(--color-muted)]">
             Loading profile...
           </p>
         </div>
@@ -232,11 +247,11 @@ const Profile = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-paper">
+      <div className="min-h-screen bg-[var(--color-bg)]">
         <AppNavbar />
 
         <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
-          <p className="font-body text-ink/60">
+          <p className="font-body text-[var(--color-muted)]">
             Unable to load profile.
           </p>
         </div>
@@ -245,179 +260,216 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[var(--color-bg)]">
       <AppNavbar />
 
-      <main className="px-4 py-10">
-        <div className="mx-auto max-w-xl rounded-2xl border border-moss/50 bg-white p-6 shadow-sm sm:p-8">
+      <main className="mx-auto max-w-5xl px-4 py-10 sm:px-8">
+
+        <NavLink
+          className="mb-6 inline-block text-xs text-[var(--color-primary)] hover:underline"
+          to={"/todos"}
+        >
+          ← Back to todos
+        </NavLink>
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr] lg:gap-14">
 
           {/* =====================================
-              HEADER
+              IDENTITY PANEL — a distinct block,
+              not another floating white card
           ===================================== */}
 
-          <div className="mb-8">
-            <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
-              My Profile
+          <div className="rounded-3xl bg-[var(--color-surface)] px-6 py-10 text-center lg:sticky lg:top-10 lg:self-start lg:text-left">
+
+            <div className="relative mx-auto w-fit lg:mx-0">
+              {preview || user.profilePicture?.url ? (
+                <img
+                  src={preview || user.profilePicture?.url}
+                  alt={user.name}
+                  className="h-28 w-28 rounded-full object-cover"
+                />
+              ) : (
+                <div className="flex h-28 w-28 items-center justify-center rounded-full bg-[var(--color-primary)] font-display text-3xl font-semibold text-[var(--color-bg)]">
+                  {user.name?.charAt(0).toUpperCase()}
+                </div>
+              )}
+
+              <label className="absolute -bottom-1 -right-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-primary)] text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)]">
+                <EditIcon />
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
+
+            <h1 className="mt-5 font-display text-2xl font-semibold text-[var(--color-text)]">
+              {user.name}
             </h1>
 
-            <p className="mt-1 font-body text-sm text-ink/50">
-              Manage your account details.
+            <p className="mt-1 font-body text-sm text-[var(--color-muted)]">
+              {user.email}
             </p>
-          </div>
-
-          {/* =====================================
-              AVATAR
-          ===================================== */}
-
-          <div className="mb-8 flex flex-col items-center">
-
-            {preview ||
-            user.profilePicture?.url ? (
-              <img
-                src={
-                  preview ||
-                  user.profilePicture?.url
-                }
-                alt={user.name}
-                className="h-32 w-32 rounded-full border border-moss/40 object-cover"
-              />
-            ) : (
-              <div className="flex h-32 w-32 items-center justify-center rounded-full bg-ink font-display text-4xl font-semibold text-paper">
-                {user.name
-                  ?.charAt(0)
-                  .toUpperCase()}
-              </div>
-            )}
-
-            <label className="mt-5 cursor-pointer rounded-full border border-ink/25 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper">
-              Choose Picture
-
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={handleFileChange}
-                className="hidden"
-              />
-            </label>
 
             {selectedFile && (
-              <div className="mt-4 text-center">
-                <p className="mb-3 font-body text-xs text-ink/50">
+              <div className="mt-5 border-t border-[var(--color-border)] pt-5">
+                <p className="mb-3 truncate font-body text-xs text-[var(--color-muted)]">
                   {selectedFile.name}
                 </p>
 
                 <button
                   type="button"
-                  onClick={
-                    handleAvatarUpload
-                  }
+                  onClick={handleAvatarUpload}
                   disabled={uploading}
-                  className="rounded-full bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full rounded-full bg-[var(--color-primary)] px-4 py-2 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {uploading
-                    ? "Uploading..."
-                    : "Upload Picture"}
+                  {uploading ? "Uploading..." : "Save picture"}
                 </button>
               </div>
             )}
           </div>
 
           {/* =====================================
-              PROFILE FORM
+              CONTENT — underline tabs, no card box
           ===================================== */}
 
-          <form
-            onSubmit={
-              handleUpdateProfile
-            }
-          >
-            {/* NAME */}
+          <div>
 
-            <div className="mb-5">
-              <label
-                htmlFor="name"
-                className="mb-2 block font-body text-sm font-medium text-ink"
-              >
-                Name
-              </label>
-
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) =>
-                  setName(
-                    e.target.value
-                  )
-                }
-                required
-                className="w-full rounded-xl border border-moss/60 bg-white px-4 py-3 font-body text-sm text-ink outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/25"
-              />
-            </div>
-
-            {/* EMAIL */}
-
-            <div className="mb-6">
-              <label
-                htmlFor="email"
-                className="mb-2 block font-body text-sm font-medium text-ink"
-              >
-                Email
-              </label>
-
-              <input
-                id="email"
-                type="email"
-                value={user.email || ""}
-                disabled
-                className="w-full cursor-not-allowed rounded-xl border border-moss/40 bg-paper px-4 py-3 font-body text-sm text-ink/50"
-              />
-
-              <p className="mt-1.5 font-body text-xs text-ink/40">
-                Email cannot currently be changed.
-              </p>
-            </div>
-
-            {/* SAVE */}
-
-            <button
-              type="submit"
-              disabled={
-                saving ||
-                !name.trim()
-              }
-              className="rounded-full bg-ink px-6 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50"
+            <div
+              role="tablist"
+              aria-label="Profile sections"
+              className="flex gap-8 border-b border-[var(--color-border)]"
             >
-              {saving
-                ? "Saving..."
-                : "Save Changes"}
-            </button>
-          </form>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "profile"}
+                onClick={() => setActiveTab("profile")}
+                className={`-mb-px border-b-2 pb-3 font-body text-sm font-medium transition-colors ${
+                  activeTab === "profile"
+                    ? "border-[var(--color-primary)] text-[var(--color-text)]"
+                    : "border-transparent text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                }`}
+              >
+                Profile
+              </button>
 
-          {/* =====================================
-              SUCCESS
-          ===================================== */}
-
-          {message && (
-            <div className="mt-5 rounded-xl border border-green-200 bg-green-50 px-4 py-3">
-              <p className="font-body text-sm text-green-700">
-                {message}
-              </p>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === "appearance"}
+                onClick={() => setActiveTab("appearance")}
+                className={`-mb-px border-b-2 pb-3 font-body text-sm font-medium transition-colors ${
+                  activeTab === "appearance"
+                    ? "border-[var(--color-primary)] text-[var(--color-text)]"
+                    : "border-transparent text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                }`}
+              >
+                Appearance
+              </button>
             </div>
-          )}
 
-          {/* =====================================
-              ERROR
-          ===================================== */}
+            {/* =====================================
+                PROFILE TAB
+            ===================================== */}
 
-          {error && (
-            <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3">
-              <p className="font-body text-sm text-red-700">
-                {error}
-              </p>
+            <div
+              role="tabpanel"
+              className={`pt-8 ${activeTab === "profile" ? "block" : "hidden"}`}
+            >
+              <form onSubmit={handleUpdateProfile} className="max-w-md">
+                <div className="mb-6">
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block font-body text-sm font-medium text-[var(--color-text)]"
+                  >
+                    Name
+                  </label>
+
+                  <input
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="w-full border-0 border-b border-[var(--color-border)] bg-transparent px-0 py-2 font-body text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)]"
+                  />
+                </div>
+
+                <div className="mb-8">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block font-body text-sm font-medium text-[var(--color-text)]"
+                  >
+                    Email
+                  </label>
+
+                  <input
+                    id="email"
+                    type="email"
+                    value={user.email || ""}
+                    disabled
+                    className="w-full cursor-not-allowed border-0 border-b border-[var(--color-border)] bg-transparent px-0 py-2 font-body text-sm text-[var(--color-muted)] outline-none"
+                  />
+
+                  <p className="mt-1.5 font-body text-xs text-[var(--color-muted)]">
+                    Email cannot currently be changed.
+                  </p>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={saving || !name.trim()}
+                  className="rounded-full bg-[var(--color-primary)] px-6 py-2.5 font-body text-sm font-medium text-[var(--color-bg)] transition-colors hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {saving ? "Saving..." : "Save changes"}
+                </button>
+              </form>
+
+              {message && (
+                <p className="mt-5 max-w-md font-body text-sm text-[var(--color-success)]">
+                  ✓ {message}
+                </p>
+              )}
+
+              {error && (
+                <p className="mt-5 max-w-md font-body text-sm text-[var(--color-danger)]">
+                  {error}
+                </p>
+              )}
             </div>
-          )}
 
+            {/* =====================================
+                APPEARANCE TAB
+            ===================================== */}
+
+            <div
+              role="tabpanel"
+              className={`pt-8 ${activeTab === "appearance" ? "block" : "hidden"}`}
+            >
+              <p className="mb-6 max-w-md font-body text-sm text-[var(--color-muted)]">
+                These preferences apply across the app and are saved to this
+                browser.
+              </p>
+
+              <div>
+                <h3 className="mb-3 font-body text-sm font-semibold text-[var(--color-text)]">
+                  Theme
+                </h3>
+                <ThemePicker />
+              </div>
+
+              <div className="mt-10">
+                <h3 className="mb-3 font-body text-sm font-semibold text-[var(--color-text)]">
+                  Todo layout
+                </h3>
+                <LayoutPicker />
+              </div>
+            </div>
+
+          </div>
         </div>
       </main>
     </div>
