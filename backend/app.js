@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth_Routes.js";
 import cookieParser from "cookie-parser";
 import errorMiddleware from "./middlewares/errorMiddleWare.js";
 import userRoutes from "./routes/user_routes.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
 
 const app = express();
 
@@ -45,6 +47,28 @@ app.use((req, res, next) => {
 app.use("/todos", todoRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    explorer: true,
+
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  }),
+);
 app.use(errorMiddleware);
+app.get(
+  "/api-docs.json",
+  (req, res) => {
+    res.setHeader(
+      "Content-Type",
+      "application/json",
+    );
+
+    res.send(swaggerSpec);
+  },
+);
 
 export default app;
