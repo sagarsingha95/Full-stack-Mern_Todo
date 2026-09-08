@@ -1,7 +1,35 @@
 const errorMiddleware = (err, req, res, next) => {
-  console.error(err);
+  // ==========================================
+  // ERROR LOGGING
+  // ==========================================
 
-  // IMAGE SIZE ERROR HANDLING //
+  if (process.env.NODE_ENV !== "test") {
+    if (process.env.NODE_ENV === "production") {
+      console.error(err.message);
+    } else {
+      console.error(err);
+    }
+  }
+
+  // ==========================================
+  // INVALID / MALFORMED JSON BODY
+  // ==========================================
+
+  if (
+    err instanceof SyntaxError &&
+    err.status === 400 &&
+    "body" in err
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid JSON body.",
+    });
+  }
+
+  // ==========================================
+  // IMAGE SIZE ERROR HANDLING
+  // ==========================================
+
   if (err.code === "LIMIT_FILE_SIZE") {
     return res.status(413).json({
       success: false,
@@ -21,11 +49,12 @@ const errorMiddleware = (err, req, res, next) => {
   }
 
   // ==========================================
-  // MONGODB DUPLICATE KEY
+  // MONGODB DUPLICATE KEY ERROR
   // ==========================================
 
   if (err.code === 11000) {
-    const field = Object.keys(err.keyPattern || {})[0];
+    const field =
+      Object.keys(err.keyPattern || {})[0];
 
     return res.status(409).json({
       success: false,
@@ -41,7 +70,9 @@ const errorMiddleware = (err, req, res, next) => {
     return res.status(400).json({
       success: false,
       message: "Validation failed.",
-      errors: Object.values(err.errors).map((error) => error.message),
+      errors: Object.values(
+        err.errors || {}
+      ).map((error) => error.message),
     });
   }
 
@@ -57,7 +88,7 @@ const errorMiddleware = (err, req, res, next) => {
   }
 
   // ==========================================
-  // JWT ERRORS
+  // JWT INVALID TOKEN ERROR
   // ==========================================
 
   if (err.name === "JsonWebTokenError") {
@@ -66,6 +97,10 @@ const errorMiddleware = (err, req, res, next) => {
       message: "Invalid token.",
     });
   }
+
+  // ==========================================
+  // JWT EXPIRED TOKEN ERROR
+  // ==========================================
 
   if (err.name === "TokenExpiredError") {
     return res.status(401).json({
@@ -78,11 +113,17 @@ const errorMiddleware = (err, req, res, next) => {
   // DEFAULT ERROR
   // ==========================================
 
-  const statusCode = err.statusCode || 500;
+  const statusCode =
+    err.statusCode || 500;
 
   return res.status(statusCode).json({
     success: false,
-    message: statusCode === 500 ? "Internal server error." : err.message,
+
+    message:
+      statusCode === 500
+        ? "Internal server error."
+        : err.message ||
+          "Something went wrong.",
   });
 };
 

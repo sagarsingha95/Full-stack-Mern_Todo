@@ -19,9 +19,7 @@ app.use(helmet());
 const logger = (req, res, next) => {
   console.log(req.method);
   console.log(req.url);
-  console.log(
-    `Time: ${new Date().toLocaleTimeString()}`
-  );
+  console.log(`Time: ${new Date().toLocaleTimeString()}`);
 
   next();
 };
@@ -29,7 +27,6 @@ const logger = (req, res, next) => {
 if (process.env.NODE_ENV !== "test") {
   app.use(logger);
 }
-app.use(logger);
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 app.use(
@@ -58,17 +55,20 @@ app.use(
     },
   }),
 );
-app.use(errorMiddleware);
-app.get(
-  "/api-docs.json",
-  (req, res) => {
-    res.setHeader(
-      "Content-Type",
-      "application/json",
-    );
 
-    res.send(swaggerSpec);
-  },
-);
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+
+  res.send(swaggerSpec);
+});
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+app.use(errorMiddleware);
 
 export default app;

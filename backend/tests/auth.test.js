@@ -29,7 +29,7 @@ describe("AUTH API", () => {
       await request(app).post("/auth/register").send(user);
       const response = await request(app).post("/auth/register").send(user);
 
-      expect(response.statusCode).toBe(400);
+      expect(response.statusCode).toBe(409);
 
       expect(response.body.message).toBe("User already exists");
     });

@@ -117,7 +117,7 @@ router.post("/register",registerLimiter,validateRegister,registerUser);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post("/loginUser",validateLogin,loginUser);
+router.post("/loginUser",loginLimiter,validateLogin,loginUser);
 /**
  * @openapi
  * /auth/refresh:
