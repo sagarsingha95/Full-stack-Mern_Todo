@@ -1,14 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f3f5f1;
-  --color-ink: #1b2420;
-  --color-moss: #b9c4b3;
-  --color-amber: #e8a33d;
-  --color-amber-dark: #b36a16;
+  /* A confident neutral pair — warm near-white, near-black ink —
+     with a single unexpected accent: deep oxblood/wine, not another
+     amber/terracotta/sage earth-tone. Variable names kept as-is so
+     no markup changes are needed anywhere; only the values changed. */
+  --color-paper: #faf9f6;
+  --color-ink: #16171b;
+  --color-moss: #dcd9d2;
+  --color-amber: #7a1f2b;
+  --color-amber-dark: #5c1620;
 
   --font-display: "Bricolage Grotesque", serif;
   --font-body: "Sora", sans-serif;
+}
+
+/* ==========================================
+   PUBLIC PAGES — dark mode
+   ==========================================
+   paper/ink swap roles; moss gets a dedicated mid-tone since the
+   light version would be nearly invisible at low opacity on a dark
+   background. Accent stays the same wine in both modes.
+   ========================================== */
+
+.dark {
+  --color-paper: #16171b;
+  --color-ink: #faf9f6;
+  --color-moss: #4a473f;
 }
 
 /* ==========================================

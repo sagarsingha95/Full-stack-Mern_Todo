@@ -151,7 +151,7 @@ const Landing = () => {
             <div className="mt-8 flex flex-col items-start gap-4">
               <Link
                 to="/register"
-                className="inline-flex items-center gap-2 bg-ink px-7 py-3.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                className="inline-flex items-center gap-2 bg-amber px-7 py-3.5 font-body text-sm font-medium text-paper transition-colors hover:bg-amber-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
               >
                 Start your list <span aria-hidden="true">→</span>
               </Link>
