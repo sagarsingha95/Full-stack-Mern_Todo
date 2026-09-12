@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../services/api";
@@ -11,9 +6,9 @@ import { apiRequest } from "../services/api";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const [authLoading, setAuthLoading] = useState(true);
 
   const [user, setUser] = useState(null);
 
@@ -25,18 +20,13 @@ const AuthProvider = ({ children }) => {
 
   const fetchProfile = async () => {
     try {
-      const data = await apiRequest(
-        "/users/profile"
-      );
+      const data = await apiRequest("/users/profile");
 
       setUser(data.user);
 
       return data.user;
     } catch (error) {
-      console.error(
-        "Failed to fetch profile:",
-        error
-      );
+      console.error("Failed to fetch profile:", error);
 
       setUser(null);
 
@@ -49,20 +39,14 @@ const AuthProvider = ({ children }) => {
   // ========================================
 
   const login = async (token) => {
-    localStorage.setItem(
-      "token",
-      token
-    );
+    localStorage.setItem("token", token);
 
     setToken(token);
 
     try {
       await fetchProfile();
     } catch (error) {
-      console.error(
-        "Failed to load user after login:",
-        error
-      );
+      console.error("Failed to load user after login:", error);
     }
   };
 
@@ -72,17 +56,11 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await apiRequest(
-        "/auth/logout",
-        {
-          method: "POST",
-        }
-      );
+      await apiRequest("/auth/logout", {
+        method: "POST",
+      });
     } catch (error) {
-      console.error(
-        "Logout request failed:",
-        error
-      );
+      console.error("Logout request failed:", error);
     } finally {
       localStorage.removeItem("token");
 
@@ -100,8 +78,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const loadUser = async () => {
-      const existingToken =
-        localStorage.getItem("token");
+      const existingToken = localStorage.getItem("token");
 
       if (!existingToken) {
         setUser(null);
@@ -121,7 +98,27 @@ const AuthProvider = ({ children }) => {
   // ========================================
   // AUTH STATE
   // ========================================
+  useEffect(() => {
+    const loadUser = async () => {
+      const existingToken = localStorage.getItem("token");
 
+      if (!existingToken) {
+        setUser(null);
+        setAuthLoading(false);
+        return;
+      }
+
+      try {
+        await fetchProfile();
+      } catch {
+        setUser(null);
+      } finally {
+        setAuthLoading(false);
+      }
+    };
+
+    loadUser();
+  }, []);
   const isAuthenticated = !!token;
 
   return (
@@ -134,6 +131,7 @@ const AuthProvider = ({ children }) => {
         user,
         setUser,
         fetchProfile,
+        authLoading,
       }}
     >
       {children}

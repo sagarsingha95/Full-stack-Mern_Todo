@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Todos from "./pages/Todos";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
+import PublicRoute from "./components/PublicRoute";
 
 import ProtectedRoute from "./components/ProtectedRoutes";
 
@@ -14,7 +15,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
 
         <Route path="/register" element={<Register />} />
 
