@@ -4,10 +4,10 @@ import rateLimit, {
 } from "express-rate-limit";
 
 // ======================================================
-// RATE-LIMIT KEY
+// KEYS
 // ======================================================
 
-const getRateLimitKey = (req) => {
+const getIpKey = (req) => {
   if (
     process.env.NODE_ENV === "test" &&
     req.headers["x-test-client"]
@@ -18,41 +18,76 @@ const getRateLimitKey = (req) => {
   return ipKeyGenerator(req.ip);
 };
 
+const getLoginKey = (req) => {
+  const ip = getIpKey(req);
+
+  const email =
+    req.body?.email
+      ?.trim()
+      ?.toLowerCase() || "unknown";
+
+  return `${ip}:${email}`;
+};
+
 // ======================================================
-// DEDICATED STORES
+// STORES
 // ======================================================
 
 const loginStore = new MemoryStore();
+const loginIpStore = new MemoryStore();
+
 const registerStore = new MemoryStore();
 const refreshStore = new MemoryStore();
 
 // ======================================================
-// LOGIN RATE LIMITER
+// LOGIN — PER IP + EMAIL
 // ======================================================
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
 
-  // Allow 2 attempts.
-  // The 3rd request receives 429.
-  limit: 2,
+  limit: 5,
 
   standardHeaders: "draft-8",
-
   legacyHeaders: false,
 
   message: {
     message:
-      "Too many login attempts. Please try again later.",
+      "Too many login attempts for this account. Please try again later.",
   },
 
-  keyGenerator: getRateLimitKey,
+  keyGenerator: getLoginKey,
 
   store: loginStore,
+
+  // Successful logins do not consume the failed-login allowance
+  skipSuccessfulRequests: true,
 });
 
 // ======================================================
-// REGISTER RATE LIMITER
+// LOGIN — OVERALL IP PROTECTION
+// ======================================================
+
+const loginIpLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+
+  limit: 30,
+
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+
+  message: {
+    message:
+      "Too many login requests from this network. Please try again later.",
+  },
+
+  keyGenerator: getIpKey,
+
+  store: loginIpStore,
+});
+
+// ======================================================
+// REGISTER
 // ======================================================
 
 const registerLimiter = rateLimit({
@@ -61,7 +96,6 @@ const registerLimiter = rateLimit({
   limit: 10,
 
   standardHeaders: "draft-8",
-
   legacyHeaders: false,
 
   message: {
@@ -69,13 +103,13 @@ const registerLimiter = rateLimit({
       "Too many registration attempts. Please try again later.",
   },
 
-  keyGenerator: getRateLimitKey,
+  keyGenerator: getIpKey,
 
   store: registerStore,
 });
 
 // ======================================================
-// REFRESH TOKEN RATE LIMITER
+// REFRESH
 // ======================================================
 
 const refreshLimiter = rateLimit({
@@ -84,7 +118,6 @@ const refreshLimiter = rateLimit({
   limit: 30,
 
   standardHeaders: "draft-8",
-
   legacyHeaders: false,
 
   message: {
@@ -92,29 +125,27 @@ const refreshLimiter = rateLimit({
       "Too many refresh attempts. Please try again later.",
   },
 
-  keyGenerator: getRateLimitKey,
+  keyGenerator: getIpKey,
 
   store: refreshStore,
 });
 
 // ======================================================
-// RESET RATE LIMITERS
+// TEST RESET
 // ======================================================
 
 const resetRateLimiters = async () => {
   await Promise.all([
     loginStore.resetAll(),
+    loginIpStore.resetAll(),
     registerStore.resetAll(),
     refreshStore.resetAll(),
   ]);
 };
 
-// ======================================================
-// EXPORTS
-// ======================================================
-
 export {
   loginLimiter,
+  loginIpLimiter,
   registerLimiter,
   refreshLimiter,
   resetRateLimiters,

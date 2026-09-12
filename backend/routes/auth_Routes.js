@@ -1,7 +1,7 @@
 import express from "express";
 import { loginUser, refreshToken, registerUser,logoutUser } from "../controllers/auth_controller.js";
 import {validateRegister,validateLogin} from "../middlewares/authValidationMiddleware.js";
-import { loginLimiter,refreshLimiter,registerLimiter } from "../middlewares/rateLimitMiddleware.js";
+import { loginLimiter,loginIpLimiter,refreshLimiter,registerLimiter } from "../middlewares/rateLimitMiddleware.js";
 
 
 const router = express.Router();
@@ -117,7 +117,7 @@ router.post("/register",registerLimiter,validateRegister,registerUser);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post("/loginUser",loginLimiter,validateLogin,loginUser);
+router.post("/loginUser",loginIpLimiter,loginLimiter,validateLogin,loginUser);
 /**
  * @openapi
  * /auth/refresh:
