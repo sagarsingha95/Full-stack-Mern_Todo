@@ -13,7 +13,7 @@ describe("RATE LIMIT API", () => {
 
       const requests = [];
 
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 6; i++) {
         requests.push(
           request(app)
             .post("/auth/loginUser")
