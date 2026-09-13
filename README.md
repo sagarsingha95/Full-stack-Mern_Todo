@@ -18,6 +18,33 @@ https://github.com/sagarsingha95/Full-stack-Mern_Todo
 
 ---
 
+
+# Screenshots
+
+## Landing Page
+
+![Landing page](./screenshots/landing.png)
+
+## Login Page
+
+![Login page](./screenshots/login.png)
+
+## Todo Dashboard
+
+![Todo Dashboard](./screenshots/dashboard.png)
+
+## Profile
+
+![Profile](./screenshots/profile.png)
+
+## Theme
+
+![Theme](./screenshots/theme.png)
+
+## API Documentation
+
+![Swagger API Documentation](./screenshots/api-docs.png)
+
 # Overview
 
 Marked is a production-focused full-stack Todo application built to go beyond basic CRUD functionality.
