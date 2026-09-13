@@ -122,7 +122,7 @@ export const updateProfile = async (req, res, next) => {
         name: name.trim(),
       },
       {
-        new: true,
+        returnDocument:"after",
         runValidators: true,
       }
     ).select("-password");
